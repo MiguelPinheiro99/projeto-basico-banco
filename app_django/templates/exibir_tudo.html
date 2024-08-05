@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Tudo</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projeto_django/css/index.css' %}">
+</head>
+<body>
+    <h1>Todas as Contas</h1>
+
+    {% if contas %}
+        <table border="1">
+            <tr>
+                <th>Nome do Titular</th>
+                <th>Número da Conta</th>
+                <th>Moeda</th>
+                <th>Saldo</th>
+            </tr>
+            {% for conta in contas %}
+            <tr>
+                <td>{{ conta.nome_titular }}</td>
+                <td>{{ conta.numero_conta }}</td>
+                <td>{{ conta.get_moeda_display }}</td>
+                <td>{{ conta.saldo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>Nenhuma conta encontrada.</p>
+        {% endif %}
+        <br><br><div><a href="{% url 'index' %}">Voltar ao inicio</a></div>
+    </body>
+    </html>

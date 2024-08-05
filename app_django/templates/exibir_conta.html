@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projeto_django/css/index.css' %}">
+</head>
+<body>
+    <h1>Buscar Conta</h1>
+    <form action="{% url 'exibir_conta' %}" method="get">
+        <label for="nome">Nome do Titular:</label>
+        <input type="text" id="nome" name="nome" required>
+        <button type="submit">Buscar</button><br><br>
+        <a href="{% url 'index' %}">Voltar ao inicio</a>
+    </form>
+    {% if conta %}
+        <h2>Detalhes da Conta</h2>
+        <p><strong>Nome do titular:</strong> {{ conta.nome_titular }}</p>
+        <p><strong>Número da Conta:</strong> {{ conta.numero_conta }}</p>
+        <p><strong>Moeda:</strong> {{conta.get_moeda_display}} </p>
+        <p><strong>Saldo:</strong>{{ conta.saldo }}</p>
+    {% elif nome is not None %}
+        <p>conta não encontrada</p>
+    {% endif %}
+</body>
+</html>

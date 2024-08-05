@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depósito</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projeto_django/css/index.css' %}">
+</head>
+<body>
+    <h1>Depósito</h1>
+    <form action="{% url 'deposito' %}" method="post">
+        {% csrf_token %}
+        <label for="nome">Nome do Titular:</label>
+        <input type="text" name="nome" id="nome" required>
+        <label for="valor">Valor:</label>
+        <input type="number" name="valor" id="valor" required>
+        <button type="submit">Depositar</button><br><br>
+        <a href="{% url 'index' %}">Voltar ao inicio</a>
+    </form>
+    {% if conta %}
+        <p>Depósito efetuado</p>
+    {% endif %}
+</body>
+</html>

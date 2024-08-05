@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saque</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projeto_django/css/index.css' %}">
+</head>
+<body>
+    <h1>Saque</h1>
+    <form action="{% url 'saque' %}" method="post">
+        {% csrf_token %}
+        <label for="nome">Nome do Titular:</label>
+        <input type="text" name="nome" id="nome" required>
+        <label for="valor">Valor:</label>
+        <input type="number" name="valor" id="valor" required>
+        <button type="submit">Sacar</button><br><br>
+        <a href="{% url 'index' %}">Voltar ao inicio</a>
+    </form>
+    {% if conta %}
+        <p>Saque efetuado.</p>
+    {% endif %}
+</body>
+</html>

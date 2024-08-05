@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transferência</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'projeto_django/css/index.css' %}">
+</head>
+<body>
+    <h1>Transferência</h1>
+    <form action="{% url 'transferencia' %}" method="post">
+        {% csrf_token %}
+        <h3>Enviador</h3>
+        <label for="nome_enviador">Nome do Titular:</label>
+        <input type="text" name="nome_enviador" id="nome_enviador" required>
+        <h3>Recebedor</h3>
+        <label for="nome_recebedor">Nome do Titular:</label>
+        <input type="text" name="nome_recebedor" id="nome_recebedor" required> <br>
+        <label for="Valor">Valor:</label>
+        <input type="number" name="valor" id="valor" required>
+        <button type="submit">Transferir</button><br><br>
+        {% if conta %}
+            <p>Transferência efetuada.</p>
+        {% endif %}
+        <a href="{% url 'index' %}">Voltar ao inicio</a>
+    </form>
+</body>
+</html>
